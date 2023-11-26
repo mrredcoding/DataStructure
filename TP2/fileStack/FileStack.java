@@ -8,11 +8,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Implémentation d'une pile basée sur un fichier.
+ *
+ * @param <T> Le type des éléments stockés dans la pile.
+ * @version 1.0
+ * @author Cédric Alonso
+ * @author Jade Hatoum
+ */
 public class FileStack<T> implements Stack<T> {
+
     private String filename;
     private int top_offset;
 
-    public FileStack(String filename){
+    /**
+     * Constructeur de la classe FileStack.
+     *
+     * @param filename Le nom du fichier utilisé pour stocker les éléments de la pile.
+     */
+    public FileStack(String filename) {
         this.filename = filename;
         this.top_offset = -1;
     }
@@ -50,19 +64,25 @@ public class FileStack<T> implements Stack<T> {
     }
 
     @Override
-    public void display() throws EmptyStackExceptions{
-        if (top_offset < 0){
+    public void display() throws EmptyStackExceptions {
+        if (top_offset < 0) {
             throw new EmptyStackExceptions(this.getClass().getSimpleName() + " is empty !");
         }
 
         List<String> lines = readFile();
         assert lines != null;
 
-        for (int i = top_offset; i >=0 ; i--){
+        for (int i = top_offset; i >= 0; i--) {
             System.out.println("- " + lines.get(i));
         }
     }
 
+    /**
+     * Lit les lignes du fichier associé à la pile.
+     *
+     * @return Une liste de chaînes représentant les lignes du fichier.
+     *         Retourne null en cas d'erreur de lecture.
+     */
     private List<String> readFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             return reader.lines().collect(Collectors.toList());
@@ -72,6 +92,12 @@ public class FileStack<T> implements Stack<T> {
         }
     }
 
+    /**
+     * Écrit les lignes fournies dans le fichier associé à la pile.
+     *
+     * @param lines La liste de chaînes à écrire dans le fichier.
+     *              Chaque élément de la liste représente une ligne du fichier.
+     */
     private void writeFile(List<String> lines) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (String line : lines) {
@@ -83,6 +109,12 @@ public class FileStack<T> implements Stack<T> {
         }
     }
 
+
+    /**
+     * Modifie le nom du fichier utilisé pour stocker les éléments de la pile.
+     *
+     * @param filename Le nouveau nom du fichier.
+     */
     public void setFilename(String filename) {
         this.filename = filename;
     }

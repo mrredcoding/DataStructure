@@ -3,12 +3,26 @@ package TP2.staticStack;
 import TP2.stack.EmptyStackExceptions;
 import TP2.stack.Stack;
 
+/**
+ * Implémentation d'une pile statique avec redimensionnement automatique.
+ *
+ * @param <T> Le type des éléments stockés dans la pile.
+ * @version 1.0
+ * @author Votre Nom
+ */
 public class StaticStack<T> implements Stack<T> {
+
     private int max;
     private T[] tab;
-    private int top = -1;
+    private int top;
 
-    public StaticStack(int max){
+    /**
+     * Constructeur de la classe StaticStack.
+     *
+     * @param max La capacité initiale de la pile.
+     */
+    public StaticStack(int max) {
+        this.top = -1;
         this.max = max;
         this.tab = (T[]) new Object[this.max];
     }
@@ -16,11 +30,11 @@ public class StaticStack<T> implements Stack<T> {
     @Override
     public void push(T value) {
         if (top == max - 1) {
-            // If the stack is full, create a new array with double the size
+            // Si la pile est pleine, crée un nouveau tableau avec le double de la taille
             T[] newTab = (T[]) new Object[max * 2];
             System.arraycopy(tab, 0, newTab, 0, max);
             tab = newTab;
-            max *=2 ;
+            max *= 2;
         }
         tab[++top] = value;
     }
@@ -44,7 +58,7 @@ public class StaticStack<T> implements Stack<T> {
     }
 
     @Override
-    public void display() throws EmptyStackExceptions{
+    public void display() throws EmptyStackExceptions {
         if (top >= 0) {
             for (int i = 0; i <= top; i++) {
                 System.out.print(tab[i] + " ");
