@@ -8,7 +8,8 @@ import TP2.stack.Stack;
  *
  * @param <T> Le type des éléments stockés dans la pile.
  * @version 1.0
- * @author Votre Nom
+ * @author Cédric Alonso
+ * @author Jade Hatoum
  */
 public class StaticStack<T> implements Stack<T> {
 

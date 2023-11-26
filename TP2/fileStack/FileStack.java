@@ -74,7 +74,7 @@ public class FileStack<T> implements Stack<T> {
         List<String> lines = readFile();
         assert lines != null;
 
-        for (int i = top_offset; i >= 0; i--) {
+        for (int i = 0; i <= top_offset; i++) {
             System.out.println("\t- " + lines.get(i));
         }
     }

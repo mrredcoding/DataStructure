@@ -18,8 +18,8 @@ public class Main {
      * @param args Les arguments de la ligne de commande (non utilisés dans ce programme).
      */
     public static void main(String[] args) {
-        // Crée une pile statique d'entiers avec une capacité initiale de 100.
-        Stack<Integer> staticStack = new StaticStack<>(100);
+        // Crée une pile statique d'entiers avec une capacité initiale de 3.
+        Stack<Integer> staticStack = new StaticStack<>(3);
 
         // Affiche une boîte de titre stylisée avec le nom de la classe de la pile.
         System.out.println(Test.titleBox(staticStack.getClass().getSimpleName()));

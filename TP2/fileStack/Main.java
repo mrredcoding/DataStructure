@@ -1,9 +1,7 @@
 package TP2.fileStack;
 
 import TP2.stack.FileException;
-import TP2.stack.Stack;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import TP2.utils.Test;
