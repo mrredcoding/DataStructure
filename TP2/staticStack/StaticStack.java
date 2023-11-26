@@ -60,7 +60,7 @@ public class StaticStack<T> implements Stack<T> {
     @Override
     public void display() throws EmptyStackExceptions {
         if (top >= 0) {
-            for (int i = 0; i <= top; i++) {
+            for (int i = top; i >= 0; i--) {
                 System.out.print(tab[i] + " ");
             }
         } else {
