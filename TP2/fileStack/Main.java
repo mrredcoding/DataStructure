@@ -1,7 +1,9 @@
 package TP2.fileStack;
 
+import TP2.stack.FileException;
 import TP2.stack.Stack;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import TP2.utils.Test;
@@ -24,15 +26,15 @@ public class Main {
         // Nom du fichier utilisé pour stocker les éléments de la pile.
         String fileName = "habibis.txt";
 
-        // Crée une pile basée sur un fichier avec des chaînes comme éléments.
-        Stack<String> fileStack = new FileStack<>(fileName);
-
         // Réinitialise le contenu du fichier à une chaîne vide.
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write("");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+
+        // Crée une pile basée sur un fichier avec des chaînes comme éléments.
+        FileStack<String> fileStack = new FileStack<>(fileName);
 
         // Affiche une boîte de titre stylisée avec le nom de la classe de la pile.
         System.out.println(Test.titleBox(fileStack.getClass().getSimpleName()));
@@ -56,6 +58,12 @@ public class Main {
 
         // Effectue une deuxième opération de pop et affiche le résultat.
         Test.pop(fileStack);
+
+        try{
+            fileStack.setFilename("bébous.txt");
+        } catch (FileException e){
+            System.out.println(e.getMessage());
+        }
 
         // Affiche à nouveau le contenu de la pile après la deuxième opération de pop.
         Test.display(fileStack);
