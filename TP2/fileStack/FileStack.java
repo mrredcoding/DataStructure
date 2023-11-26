@@ -1,6 +1,7 @@
 package TP2.fileStack;
 
 import TP2.stack.EmptyStackExceptions;
+import TP2.stack.FileException;
 import TP2.stack.Stack;
 
 import java.io.*;
@@ -69,11 +70,12 @@ public class FileStack<T> implements Stack<T> {
             throw new EmptyStackExceptions(this.getClass().getSimpleName() + " is empty !");
         }
 
+        System.out.println("Nom du fichier : " + this.filename);
         List<String> lines = readFile();
         assert lines != null;
 
         for (int i = top_offset; i >= 0; i--) {
-            System.out.println("- " + lines.get(i));
+            System.out.println("\t- " + lines.get(i));
         }
     }
 
@@ -112,10 +114,22 @@ public class FileStack<T> implements Stack<T> {
 
     /**
      * Modifie le nom du fichier utilisé pour stocker les éléments de la pile.
+     * Renomme également le fichier sur le disque.
      *
-     * @param filename Le nouveau nom du fichier.
+     * @param fileName Le nouveau nom du fichier.
      */
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setFilename(String fileName) throws FileException {
+        File oldFile = new File(this.filename);
+        File newFile = new File(fileName);
+
+        if (oldFile.exists())
+            if (oldFile.renameTo(newFile))
+                this.filename = fileName;
+            else
+                throw new FileException("Impossible de renommer le fichier.");
+
+        else
+            throw new FileException("Le fichier d'origine n'existe pas.");
+
     }
 }
