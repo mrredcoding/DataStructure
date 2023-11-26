@@ -61,7 +61,7 @@ public class StaticStack<T> implements Stack<T> {
     public void display() throws EmptyStackExceptions {
         if (top >= 0) {
             for (int i = top; i >= 0; i--) {
-                System.out.print(tab[i] + " ");
+                System.out.println(tab[i]);
             }
         } else {
             throw new EmptyStackExceptions(this.getClass().getSimpleName() + " is empty !");

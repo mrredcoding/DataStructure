@@ -75,7 +75,7 @@ public class DynamicStack<T> implements Stack<T> {
             throw new EmptyStackExceptions(this.getClass().getSimpleName() + " is empty !");
         }
         while (current != null) {
-            System.out.print(current.val + " ");
+            System.out.println(current.val);
             current = current.next;
         }
         System.out.println();
