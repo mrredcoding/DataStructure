@@ -4,7 +4,8 @@ import TP2.stack.EmptyStackExceptions;
 import TP3.utils.BracketType;
 
 /**
- * La classe BracketChecker est utilisée pour vérifier si les parenthèses dans une expression donnée sont correctement imbriquées.
+ * La classe BracketChecker est utilisée pour vérifier si les parenthèses dans une expression donnée
+ * sont correctement imbriquées.
  *
  * @version 1.0
  * @author Cédric Alonso
@@ -48,9 +49,12 @@ public class BracketChecker {
 
                 Character poppedChar = stack.pop();
 
-                if ((currentChar == BracketType.CLOSE_PARENTHESIS.getSymbol() && poppedChar != BracketType.OPEN_PARENTHESIS.getSymbol())
-                        || (currentChar == BracketType.CLOSE_SQUARE_BRACKET.getSymbol() && poppedChar != BracketType.OPEN_SQUARE_BRACKET.getSymbol())
-                        || (currentChar == BracketType.CLOSE_CURLY_BRACE.getSymbol() && poppedChar != BracketType.OPEN_CURLY_BRACE.getSymbol())) {
+                if ((currentChar == BracketType.CLOSE_PARENTHESIS.getSymbol()
+                                && poppedChar != BracketType.OPEN_PARENTHESIS.getSymbol())
+                        || (currentChar == BracketType.CLOSE_SQUARE_BRACKET.getSymbol()
+                                && poppedChar != BracketType.OPEN_SQUARE_BRACKET.getSymbol())
+                        || (currentChar == BracketType.CLOSE_CURLY_BRACE.getSymbol()
+                                && poppedChar != BracketType.OPEN_CURLY_BRACE.getSymbol())) {
                     return false;
                 }
             }

@@ -3,8 +3,8 @@ package TP3.parenthesesChecker;
 import TP2.stack.EmptyStackExceptions;
 
 /**
- * La classe Main contient la méthode principale pour exécuter le programme de vérification des parenthèses en utilisant
- * la classe BracketChecker.
+ * La classe Main contient la méthode principale pour exécuter le programme de vérification des parenthèses
+ * en utilisant la classe BracketChecker.
  *
  * @version 1.0
  * @author Cédric Alonso
@@ -26,9 +26,9 @@ public class Main {
 
         try {
             if (checker.areBracketsNested()) {
-                System.out.println("Les parenthèses sont correctement imbriquées.");
+                System.out.println("Les parentheses sont correctement imbriquees.");
             } else {
-                System.out.println("Les parenthèses ne sont pas correctement imbriquées.");
+                System.out.println("Les parentheses ne sont pas correctement imbriquees.");
             }
         } catch (EmptyStackExceptions e) {
             System.out.println(e.getMessage());

@@ -9,7 +9,7 @@ import TP3.utils.*;
  *
  * @version 1.0
  * @author Cédric Alonso
- * @autor Jade Hatoum
+ * @author Jade Hatoum
  */
 public class InfixToPostfix {
 
