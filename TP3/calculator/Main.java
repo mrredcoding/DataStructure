@@ -43,6 +43,8 @@ public class Main {
         } catch (EmptyStackExceptions e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Résultat : " + result);
+        System.out.println("Résultat: " + result);
+
+        System.out.println("Résultat calculé avec le calculator : " + Calculator.calculate(infixExpression));
     }
 }
