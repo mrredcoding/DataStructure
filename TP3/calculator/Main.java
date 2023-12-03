@@ -2,12 +2,27 @@ package TP3.calculator;
 
 import TP2.stack.EmptyStackExceptions;
 
+/**
+ * La classe Main contient la méthode principale pour exécuter le programme de calculatrice en utilisant les classes
+ * InfixToPostfix et PostfixEvaluator.
+ *
+ * @version 1.0
+ * @author Cédric Alonso
+ * @author Jade Hatoum
+ */
 public class Main {
 
+    /**
+     * La méthode principale du programme.
+     *
+     * @param args Les arguments de ligne de commande.
+     */
     public static void main(String[] args) {
+        // Expression infixée à évaluer
         String infixExpression = "( 2 + 3 ) * ( 6 - ( 7 - 8 ) ) / ( 6 + 1 )";
         InfixToPostfix infixToPostfix = new InfixToPostfix(infixExpression);
 
+        // Conversion de l'expression infixée en notation postfixée
         String postfixExpression = null;
         try {
             postfixExpression = infixToPostfix.toPostfix();
@@ -15,9 +30,11 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Infix Expression: " + infixExpression);
-        System.out.println("Postfix Expression: " + postfixExpression);
+        // Affichage des expressions
+        System.out.println("Expression infixée : " + infixExpression);
+        System.out.println("Expression postfixée : " + postfixExpression);
 
+        // Évaluation de l'expression postfixée
         PostfixEvaluator postfixEvaluator = new PostfixEvaluator(postfixExpression);
 
         double result = 0;
@@ -26,6 +43,6 @@ public class Main {
         } catch (EmptyStackExceptions e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Result: " + result);
+        System.out.println("Résultat : " + result);
     }
 }
