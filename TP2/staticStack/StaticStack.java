@@ -69,4 +69,9 @@ public class StaticStack<T> implements Stack<T> {
         }
         System.out.println();
     }
+
+    @Override
+    public boolean isEmpty(){
+        return this.top < 0;
+    }
 }

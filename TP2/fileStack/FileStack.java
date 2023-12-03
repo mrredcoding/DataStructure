@@ -79,6 +79,10 @@ public class FileStack<T> implements Stack<T> {
         }
     }
 
+    public boolean isEmpty(){
+        return this.top_offset < 0;
+    }
+
     /**
      * Lit les lignes du fichier associé à la pile.
      *

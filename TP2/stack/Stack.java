@@ -40,4 +40,6 @@ public interface Stack<T> {
      * @throws EmptyStackExceptions Si la pile est vide au moment de l'appel.
      */
     void display() throws EmptyStackExceptions;
+
+    boolean isEmpty();
 }

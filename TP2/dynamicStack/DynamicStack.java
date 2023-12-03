@@ -80,4 +80,9 @@ public class DynamicStack<T> implements Stack<T> {
         }
         System.out.println();
     }
+
+    @Override
+    public boolean isEmpty(){
+        return this.top == null;
+    }
 }
