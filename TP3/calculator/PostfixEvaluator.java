@@ -34,17 +34,17 @@ public class PostfixEvaluator {
      * @throws EmptyStackExceptions si une tentative est faite pour dépiler un élément d'une pile vide.
      */
     public double evaluate() throws EmptyStackExceptions {
-        DynamicStack<Integer> operandStack = new DynamicStack<>();
+        DynamicStack<Double> operandStack = new DynamicStack<>();
 
         for (char currentChar : postfixExpression.toCharArray()) {
             if (currentChar == ' ')
                 continue;
 
             if (Character.isDigit(currentChar)) {
-                operandStack.push(Character.getNumericValue(currentChar));
+                operandStack.push((double) Character.getNumericValue(currentChar));
             } else {
-                int operand2 = operandStack.pop();
-                int operand1 = operandStack.pop();
+                double operand2 = operandStack.pop();
+                double operand1 = operandStack.pop();
 
                 if (currentChar == OperatorType.ADD.getOperator())
                     operandStack.push(operand1 + operand2);
