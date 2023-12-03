@@ -1,4 +1,4 @@
-package TP3.ParenthesesChecker;
+package TP3.utils;
 
 public enum BracketType {
     OPEN_PARENTHESIS('('),
@@ -8,13 +8,13 @@ public enum BracketType {
     OPEN_CURLY_BRACE('{'),
     CLOSE_CURLY_BRACE('}');
 
-    private final char symbol;
+    private final Character symbol;
 
-    BracketType(char symbol) {
+    BracketType(Character symbol) {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
+    public Character getSymbol() {
         return symbol;
     }
 }
