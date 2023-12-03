@@ -41,5 +41,10 @@ public interface Stack<T> {
      */
     void display() throws EmptyStackExceptions;
 
+    /**
+     * Indique si la pile est vide.
+     *
+     * @return vraie si la pile est vide.
+     */
     boolean isEmpty();
 }
