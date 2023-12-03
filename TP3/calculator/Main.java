@@ -1,9 +1,6 @@
 package TP3.calculator;
 
-import TP2.dynamicStack.DynamicStack;
 import TP2.stack.EmptyStackExceptions;
-import TP2.stack.Stack;
-import TP2.staticStack.StaticStack;
 
 public class Main {
 
