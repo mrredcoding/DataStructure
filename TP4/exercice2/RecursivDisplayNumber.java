@@ -7,15 +7,12 @@ public class RecursivDisplayNumber {
 
     }
 
-    public static void display(int start, int stop){
-        if (start > stop)
-            return;
-
-        if (start == stop + 1)
+    public static void display(int start, int end){
+        if (start > end)
             return;
 
         System.out.println(start);
 
-        display(start + 1, stop);
+        display(start + 1, end);
     }
 }

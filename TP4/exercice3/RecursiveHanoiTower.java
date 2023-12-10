@@ -1,11 +1,6 @@
 package TP4.exercice3;
 
-public class RecursivTowerOfHanoi {
-
-    public RecursivTowerOfHanoi(){
-
-    }
-
+public class RecursiveHanoiTower {
     public static void towers(int n, char frompeg, char topeg, char auxpeg) {
         if (n == 1) {
             System.out.println("Move disk 1 from " + frompeg + " to " + topeg);
