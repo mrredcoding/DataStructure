@@ -6,7 +6,7 @@ public class RecursivDisplayNumber {
         if (start > end)
             return;
 
-        System.out.println(start);
+        System.out.print(start + " ");
 
         display(start + 1, end);
     }
