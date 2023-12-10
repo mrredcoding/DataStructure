@@ -2,16 +2,19 @@ package TP4.exercice4;
 
 public class RecursiveExpressionIsValid {
     private static String input;
+    private static int pos;
 
     public static boolean validate(String expression) {
         input = expression;
-        return expr() && input.isEmpty();
+        pos = 0;
+        return expr() && pos == input.length();
     }
 
     private static boolean expr() {
         if (term()) {
-            if (input.startsWith("+")) {
-                input = input.substring(1);
+            char symbol = getsymb();
+            if (symbol == '+' && pos < input.length()) {
+                pos++;
                 return term();
             }
             return true;
@@ -21,8 +24,9 @@ public class RecursiveExpressionIsValid {
 
     private static boolean term() {
         if (factor()) {
-            if (input.startsWith("*")) {
-                input = input.substring(1);
+            char symbol = getsymb();
+            if (symbol == '*' && pos < input.length()) {
+                pos++;
                 return factor();
             }
             return true;
@@ -31,19 +35,27 @@ public class RecursiveExpressionIsValid {
     }
 
     private static boolean factor() {
-        if (!input.isEmpty()) {
-            if (Character.isLetter(input.charAt(0))) {
-                input = input.substring(1);
+        if (pos < input.length()) {
+            char symbol = getsymb();
+            if (Character.isLetter(symbol)) {
+                pos++;
                 return true;
-            } else if (input.startsWith("(")) {
-                input = input.substring(1);
+            } else if (symbol == '(') {
+                pos++;
                 boolean valid = expr();
-                if (valid && input.startsWith(")")) {
-                    input = input.substring(1);
+                if (valid && getsymb() == ')') {
+                    pos++;
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    private static char getsymb() {
+        if (pos < input.length()) {
+            return input.charAt(pos);
+        }
+        return '\0';
     }
 }

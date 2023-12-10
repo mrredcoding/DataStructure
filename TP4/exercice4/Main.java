@@ -11,7 +11,6 @@ public class Main {
         String expression = scanner.nextLine();
 
         boolean isValid = RecursiveExpressionIsValid.validate(expression);
-
         System.out.print(expression + " is ");
         System.out.println(isValid ? "valid" : "not valid");
     }
