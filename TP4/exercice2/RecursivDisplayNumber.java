@@ -2,11 +2,6 @@ package TP4.exercice2;
 
 public class RecursivDisplayNumber {
 
-
-    public RecursivDisplayNumber(){
-
-    }
-
     public static void display(int start, int end){
         if (start > end)
             return;
