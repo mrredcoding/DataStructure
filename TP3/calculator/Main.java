@@ -19,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // Expression infixée à évaluer
-        String infixExpression = "( 2 + 3 ) * ( 6 - ( 7 - 8 ) ) / ( 6 + 1 )";
+        String infixExpression = "( 2 + 3 ) * ( 6 - 2 )";
         InfixToPostfix infixToPostfix = new InfixToPostfix(infixExpression);
 
         // Conversion de l'expression infixée en notation postfixée
