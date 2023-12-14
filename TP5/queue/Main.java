@@ -1,4 +1,4 @@
-package TP5;
+package TP5.queue;
 
 public class Main {
 
@@ -24,7 +24,7 @@ public class Main {
             try{
                 queue.push(value);
                 System.out.println("Properly pushed value : " + value + " in the queue");
-            } catch (EmptyQueueException e){
+            } catch (QueueException e){
                 System.out.println(e.getMessage());
             }
         }
@@ -35,7 +35,7 @@ public class Main {
         try{
             Integer popValue = queue.pop();
             System.out.println("The pop element value is : " + popValue);
-        } catch (EmptyQueueException e){
+        } catch (QueueException e){
             System.out.println(e.getMessage());
         }
         System.out.println(queue);

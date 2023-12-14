@@ -1,6 +1,6 @@
-package TP5;
+package TP5.utils;
 
-public enum Etat {
+public enum State {
 
     VOID,
     WAITING_ROOM,

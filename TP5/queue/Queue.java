@@ -1,7 +1,7 @@
-package TP5;
+package TP5.queue;
 
 public class Queue<T> {
-    private T[] tab;
+    private final T[] tab;
     private int start;
 
     private int end;
@@ -18,9 +18,9 @@ public class Queue<T> {
         this.nbElements = 0;
     }
 
-    public void push(T value) throws EmptyQueueException {
+    public void push(T value) throws QueueException {
         if (this.isFull())
-            throw new EmptyQueueException("You cannot push an element (" + value + ") : " +
+            throw new QueueException("You cannot push an element (" + value + ") : " +
                     this.getClass().getSimpleName() + " is full !");
 
         this.tab[this.end] = value;
@@ -29,9 +29,9 @@ public class Queue<T> {
         this.nbElements++;
     }
 
-    public T pop() throws EmptyQueueException{
+    public T pop() throws QueueException {
         if (this.isEmpty())
-            throw new EmptyQueueException("You cannot pop an element : " +
+            throw new QueueException("You cannot pop an element : " +
                     this.getClass().getSimpleName() + " is empty ! ");
 
         T value = this.tab[this.start];
