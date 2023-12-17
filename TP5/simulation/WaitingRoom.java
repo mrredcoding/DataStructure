@@ -53,9 +53,7 @@ class WaitingRoom {
     }
 
     /**
-     * Simule le traitement des patients dans la salle d'attente.
-     *
-     * La méthode simule le déroulement du traitement des patients en fonction de leur heure d'arrivée
+     * Simule le déroulement du traitement des patients en fonction de leur heure d'arrivée
      * et de la durée de leur examen.
      *
      * @throws QueueException Si la salle d'attente est vide.
@@ -65,6 +63,7 @@ class WaitingRoom {
         int totalGlobalTime = 0;
         int totalPatients = waitingRoom.getNbElements();
         int currentTime = 0;
+        int simulationTime = 0;
 
         while (!waitingRoom.isEmpty()) {
             Patient currentPatient = getNextEearliestPatient();
@@ -83,12 +82,14 @@ class WaitingRoom {
 
             totalWaitTime += waitTime;
             totalGlobalTime += globalTime;
+
+            simulationTime = Math.max(simulationTime, endExaminationTime);
         }
 
         double averageGlobalTime = (double) totalGlobalTime / totalPatients;
         double averageWaitTime = (double) totalWaitTime / totalPatients;
 
-        System.out.println("\nTotal Simulation Time: " + totalGlobalTime + " minutes.");
+        System.out.println("\nTotal Simulation Time: " + simulationTime + " minutes.");
         System.out.println("\nAverage Global Time: " + averageGlobalTime + " minutes.");
         System.out.println("Average Waiting Time: " + averageWaitTime + " minutes.");
     }
