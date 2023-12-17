@@ -60,6 +60,18 @@ public class Queue<T> {
     }
 
     /**
+     * Retourne l'élément du début de la file sans le retirer.
+     *
+     * @return L'élément du début de la file.
+     * @throws QueueException Si la file est vide.
+     */
+    public T top() throws QueueException {
+        if (this.isEmpty())
+            throw new QueueException("Vous ne pouvez pas retirer un élément : La file est vide !");
+        return this.tab[this.start];
+    }
+
+    /**
      * Retourne une représentation sous forme de chaîne de caractères de la file.
      *
      * @return Une chaîne de caractères représentant la file.
