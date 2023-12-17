@@ -67,7 +67,7 @@ public class Queue<T> {
      */
     public T top() throws QueueException {
         if (this.isEmpty())
-            throw new QueueException("Vous ne pouvez pas retirer un élément : La file est vide !");
+            throw new QueueException("Vous ne pouvez pas lire d'élément : La file est vide !");
         return this.tab[this.start];
     }
 
@@ -99,7 +99,7 @@ public class Queue<T> {
      *
      * @return true si la file est pleine, false sinon.
      */
-    private boolean isFull() {
+    public boolean isFull() {
         return this.nbElements == NBMAXELEMENTS;
     }
 
@@ -108,7 +108,20 @@ public class Queue<T> {
      *
      * @return true si la file est vide, false sinon.
      */
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return this.nbElements == 0;
     }
+
+    /**
+     * Retourne le nombre d'élément dans la file
+     *
+     * @return nbElements le nombre d'élément dans la file
+     */
+    public int getNbElements(){
+        return this.nbElements;
+    }
 }
+
+
+
+
