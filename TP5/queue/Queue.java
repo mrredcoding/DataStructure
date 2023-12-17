@@ -87,7 +87,7 @@ public class Queue<T> {
      *
      * @return true si la file est pleine, false sinon.
      */
-    public boolean isFull() {
+    private boolean isFull() {
         return this.nbElements == NBMAXELEMENTS;
     }
 
@@ -96,16 +96,7 @@ public class Queue<T> {
      *
      * @return true si la file est vide, false sinon.
      */
-    public boolean isEmpty() {
+    private boolean isEmpty() {
         return this.nbElements == 0;
-    }
-
-    /**
-     * Retourne le nombre d'éléments actuellement dans la file.
-     *
-     * @return Le nombre d'éléments actuellement dans la file.
-     */
-    public int getNbElements() {
-        return this.nbElements;
     }
 }
