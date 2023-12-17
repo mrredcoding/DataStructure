@@ -97,7 +97,37 @@ public class Simulator {
                 System.out.println(time + " - " + currentPatient.getId());
 
             for (Patient patient : patientsList)
-                System.out.println(patient.getId() + " : " + patient.getGlobalTime() + " ," + patient.getWaitingTime());
+                System.out.println(patient.getId() + " : " + patient.getGlobalTime() + ", " + patient.getWaitingTime());
+
         }
+
+
+        Integer[] averageStats = stats(patientsList);
+        System.out.println("Average Global Time: " + averageStats[0]);
+        System.out.println("Average Waiting Time: " + averageStats[1]);
     }
+
+    private Integer[] stats(ArrayList<Patient> patients) {
+        int totalGlobalTime = 0;
+        int totalWaitingTime = 0;
+        int totalPatients = 0;
+
+        for (Patient patient : patients) {
+            if (patient.getState() == State.END) {
+                totalGlobalTime += patient.getGlobalTime();
+                totalWaitingTime += patient.getWaitingTime();
+                totalPatients++;
+            }
+        }
+
+        if (totalPatients == 0) {
+            return new Integer[]{0, 0};
+        }
+
+        int avgGlobalTime = totalGlobalTime / totalPatients;
+        int avgWaitingTime = totalWaitingTime / totalPatients;
+
+        return new Integer[]{avgGlobalTime, avgWaitingTime};
+    }
+
 }
