@@ -61,17 +61,16 @@ class WaitingRoom {
     public void simulate() throws QueueException {
         int totalWaitTime = 0;
         int totalGlobalTime = 0;
-        int totalPatients = waitingRoom.getNbElements();
+        int nbPatients = waitingRoom.getNbElements();
         int currentTime = 0;
-        int simulationTime = 0;
 
         while (!waitingRoom.isEmpty()) {
             Patient currentPatient = getNextEearliestPatient();
-            int minArrivalTime = currentPatient.getArrivalTime();
+            int arrivalTime = currentPatient.getArrivalTime();
 
-            currentTime = Math.max(currentTime, minArrivalTime);
+            currentTime = Math.max(currentTime, arrivalTime);
 
-            int waitTime = currentTime - minArrivalTime;
+            int waitTime = currentTime - arrivalTime;
             int globalTime = waitTime + currentPatient.getExaminationDuration();
 
             int startExaminationTime = currentTime;
@@ -82,14 +81,12 @@ class WaitingRoom {
 
             totalWaitTime += waitTime;
             totalGlobalTime += globalTime;
-
-            simulationTime = Math.max(simulationTime, endExaminationTime);
         }
 
-        double averageGlobalTime = (double) totalGlobalTime / totalPatients;
-        double averageWaitTime = (double) totalWaitTime / totalPatients;
+        double averageGlobalTime = (double) totalGlobalTime / nbPatients;
+        double averageWaitTime = (double) totalWaitTime / nbPatients;
 
-        System.out.println("\nTotal Simulation Time: " + simulationTime + " minutes.");
+        System.out.println("\nTotal Simulation Time: " + currentTime + " minutes.");
         System.out.println("\nAverage Global Time: " + averageGlobalTime + " minutes.");
         System.out.println("Average Waiting Time: " + averageWaitTime + " minutes.");
     }
