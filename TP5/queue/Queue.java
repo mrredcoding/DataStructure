@@ -64,7 +64,7 @@ public class Queue<T> {
         return this.nbElements == NBMAXELEMENTS;
     }
 
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         return this.nbElements == 0;
     }
 }
