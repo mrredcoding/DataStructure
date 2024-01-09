@@ -1,18 +1,18 @@
 package TP5.simulation;
 
-import java.util.ArrayList;
+import TP5.queue.QueueException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        ArrayList<Patient> patientsList = new ArrayList<>();
+    public static void main(String[] args) throws QueueException {
+        WaitingRoom waitingRoom = new WaitingRoom();
 
-        patientsList.add(new Patient(8, 10, 2, 1, 10));
-        patientsList.add(new Patient(10, 3, 1, 2, 3));
-        patientsList.add(new Patient( 1, 4, 3, 2, 4));
-        patientsList.add(new Patient( 3, 4, -1, 2, 4));
-        patientsList.add(new Patient( 6, 7, 3, 2, 7));
+        waitingRoom.addPatient(new Patient(3, 10));
+        waitingRoom.addPatient(new Patient(0, 6));
+        waitingRoom.addPatient(new Patient(2, 8));
+        waitingRoom.addPatient(new Patient(4, 9));
+        waitingRoom.addPatient(new Patient(6, 4));
 
-        new Simulator(patientsList, 40);
+        waitingRoom.simulate();
     }
 }

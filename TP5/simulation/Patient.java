@@ -1,119 +1,55 @@
 package TP5.simulation;
 
-import TP5.utils.State;
-
-public class Patient {
-
-    private static int cpt = 1;
-    private final String id;
-
+/**
+ * La classe Patient modélise un patient avec des attributs tels que l'heure d'arrivée et la durée de l'examen.
+ * Chaque patient se voit attribuer un nom unique commençant par "P1".
+ *
+ * @version 1.0
+ * @author Cédric Alonso
+ * @author Jade Hatoum
+ */
+class Patient {
+    private static int idCpt = 0;
+    private final String name;
     private final int arrivalTime;
-    private final int timeStartTest;
-    private final int testDuration;
+    private final int examinationDuration;
 
-    private final int consultationTime;
-
-    private int timeStartConsultation;
-
-    private int remainingTime;
-
-    private int globalTime;
-    private int waitingTime;
-
-    private boolean testDone;
-
-    private int timeEndTest;
-
-    private State state;
-
-    public Patient(int arrivalTime, int consultationTime, int timeStartTest, int testDuration, int remainingTime){
-        this.id = "P" + cpt;
+    /**
+     * Construit un patient avec l'heure d'arrivée et la durée d'examen spécifiées.
+     *
+     * @param arrivalTime          L'heure à laquelle le patient arrive.
+     * @param examinationDuration La durée de l'examen pour le patient.
+     */
+    public Patient(int arrivalTime, int examinationDuration) {
+        this.name = "P" + ++idCpt;
         this.arrivalTime = arrivalTime;
-        this.consultationTime = consultationTime;
-        this.timeStartTest = timeStartTest;
-        this.testDuration = testDuration;
-        this.timeStartConsultation = 0;
-        this.remainingTime = remainingTime;
-        this.globalTime = 0;
-        this.waitingTime = 0;
-        this.state = State.VOID;
-        this.testDone = false;
-        this.timeEndTest = 0;
-
-        cpt++;
+        this.examinationDuration = examinationDuration;
     }
 
+    /**
+     * Récupère le nom du patient.
+     *
+     * @return Le nom du patient.
+     */
+    public String getName() {
+        return name;
+    }
 
-    
+    /**
+     * Récupère l'heure d'arrivée du patient.
+     *
+     * @return L'heure d'arrivée du patient.
+     */
     public int getArrivalTime() {
         return arrivalTime;
     }
 
-    public int getTimeStartTest() {
-        return timeStartTest;
-    }
-
-    public int getTestDuration() {
-        return testDuration;
-    }
-
-    public int getTimeStartConsultation() {
-        return timeStartConsultation;
-    }
-
-    public int getRemainingTime() {
-        return remainingTime;
-    }
-
-    public int getGlobalTime() {
-        return globalTime;
-    }
-
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
-    public boolean isTestDone() {
-        return testDone;
-    }
-
-    public int getTimeEndTest() {
-        return timeEndTest;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public void setTimeStartConsultation(int time) {
-        this.timeStartConsultation = time;
-    }
-
-    public void setRemainingTime(int remainingTime) {
-        this.remainingTime = remainingTime;
-    }
-
-    public void setWaitingTime(int waitingTime){
-        this.waitingTime = waitingTime;
-    }
-
-    public void setGlobalTime(int globalTime){
-        this.globalTime = globalTime;
-    }
-
-    public void setIsTestDone(boolean testDone) {
-        this.testDone = testDone;
-    }
-
-    public void setTimeEndTest(int timeEndTest) {
-        this.timeEndTest = timeEndTest;
-    }
-
-    public final String getId() {
-        return this.id;
+    /**
+     * Récupère la durée de l'examen du patient.
+     *
+     * @return La durée de l'examen du patient.
+     */
+    public int getExaminationDuration() {
+        return examinationDuration;
     }
 }
