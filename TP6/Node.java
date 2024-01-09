@@ -2,7 +2,7 @@ package TP6;
 
 public class Node{
 
-    private final Integer value;
+    private Integer value;
 
     private Node left;
 
@@ -43,5 +43,9 @@ public class Node{
     @Override
     public String toString(){
         return String.valueOf(this.value);
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 }
