@@ -16,8 +16,8 @@ public class Node{
 
     public Node(Integer value) {
         this.value = value;
-        this.left = new Node();
-        this.right = new Node();
+        this.left = null;
+        this.right = null;
     }
 
     public Integer getValue() {

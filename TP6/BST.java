@@ -36,7 +36,7 @@ public class BST {
     }
 
     private Node insert(Integer value, Node source) {
-        if (source.getValue() == null)
+        if (source == null || source.getValue() == null)
             return new Node(value);
         else if (value > source.getValue())
             source.setRight(insert(value, source.getRight()));
@@ -55,7 +55,7 @@ public class BST {
      */
     public List<Integer> inOrder() throws BSTException, EmptyStackExceptions {
         if (this.isEmpty())
-            throw new BSTException("Arbre de Recherche Binaire est vide");
+            throw new BSTException("BST is empty");
 
         Stack<Node> nodes = new DynamicStack<>();
         ArrayList<Integer> inOrderTraversal = new ArrayList<>();
@@ -142,7 +142,7 @@ public class BST {
      */
     public Integer getMaxValue() throws BSTException {
         if (isEmpty())
-            throw new BSTException("Arbre de recherche binaire est vide");
+            throw new BSTException("BST is empty");
 
        return maxValue(this.root);
     }
@@ -165,7 +165,7 @@ public class BST {
      */
     public Integer getMinValue() throws BSTException {
         if (isEmpty())
-            throw new BSTException("Arbre de recherche binaire est vide");
+            throw new BSTException("BST is empty");
 
         return minValue(this.root);
     }
@@ -212,8 +212,8 @@ public class BST {
         if (node == null)
             return 0;
 
-        int leftNodes = (node.getLeft() != null) ? nbNodes(node.getLeft()) : 0;
-        int rightNodes = (node.getRight() != null) ? nbNodes(node.getRight()) : 0;
+        int leftNodes = nbNodes(node.getLeft());
+        int rightNodes = nbNodes(node.getRight());
 
         return leftNodes + rightNodes + 1;
     }
@@ -234,7 +234,7 @@ public class BST {
     }
 
     private boolean search(Integer value, Node node) {
-        if (node.getValue() == null)
+        if (node == null)
             return false;
         if (value.equals(node.getValue()))
             return true;
@@ -282,7 +282,7 @@ public class BST {
     }
 
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return this.root == null || this.root.getValue() == null;
     }
 
@@ -294,10 +294,10 @@ public class BST {
     @Override
     public String toString() {
         if (this.isEmpty())
-            return "Arbre de recherche binaire est vide";
+            return "BST is empty";
 
         try {
-            return "Arbre de recherche binaire : " + inOrder();
+            return "BST : " + inOrder();
         } catch (BSTException | EmptyStackExceptions e) {
             System.out.println(e.getMessage());
         }
@@ -307,9 +307,9 @@ public class BST {
 
     public Integer getMeanValue() throws BSTException, EmptyStackExceptions {
         List<Integer> allValues = inOrder();
-        Integer sum = 0;
+        int sum = 0;
         for (Integer value : allValues)
-            sum += value;
+                sum += value;
 
         return sum / allValues.size();
     }
