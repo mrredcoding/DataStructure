@@ -50,30 +50,19 @@ public class BST {
      * Effectue un parcours en ordre de l'Arbre de Recherche Binaire.
      *
      * @return Liste d'entiers représentant le parcours en ordre.
-     * @throws BSTException si l'Arbre de Recherche Binaire est vide.
-     * @throws EmptyStackExceptions s'il y a un problème avec la pile pendant le parcours.
      */
-    public List<Integer> inOrder() throws BSTException, EmptyStackExceptions {
-        if (this.isEmpty())
-            throw new BSTException("BST is empty");
-
-        Stack<Node> nodes = new DynamicStack<>();
+    public ArrayList<Integer> inOrder() {
         ArrayList<Integer> inOrderTraversal = new ArrayList<>();
-        Node current = this.root;
-
-        //je comprends pas pk ça push les null dans la stack alors que j'ai mon if current != null :=(
-        while (current != null || !nodes.isEmpty()) {
-            if (current != null) {
-                nodes.push(current);
-                current = current.getLeft();
-            } else {
-                Node poppedNode = nodes.pop();
-                inOrderTraversal.add(poppedNode.getValue());
-                current = poppedNode.getRight();
-            }
-        }
-
+        inOrder(root, inOrderTraversal);
         return inOrderTraversal;
+    }
+
+    private void inOrder(Node node, ArrayList<Integer> traversal) {
+        if (node != null) {
+            inOrder(node.getLeft(), traversal);
+            traversal.add(node.getValue());
+            inOrder(node.getRight(), traversal);
+        }
     }
 
 
@@ -296,13 +285,7 @@ public class BST {
         if (this.isEmpty())
             return "BST is empty";
 
-        try {
-            return "BST : " + inOrder();
-        } catch (BSTException | EmptyStackExceptions e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
+        return "BST : " + inOrder();
     }
 
     public Integer getMeanValue() throws BSTException, EmptyStackExceptions {
