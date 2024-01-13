@@ -73,8 +73,13 @@ public class Main {
                     int number = Integer.parseInt(choice);
                     boolean found = bst.search(number);
 
-                    System.out.println("The number '" + number + "' has " + (!found ? "not" : "") +
-                            " been removed from the binary search tree");
+                    if (found) {
+                        bst.remove(number);
+                        System.out.println("The number '" + number + "' has been removed from the binary search tree");
+                    }
+                    else
+                        System.out.println("The number '" + number + "' does not belong to the tree");
+
                 } catch (NumberFormatException e) {
                     System.err.println("You need to type only numbers or 'stop'");
                     choice = "continue";
