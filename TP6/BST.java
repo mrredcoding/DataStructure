@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implémentation d'un Arbre de recherche binaire (BST).
+ * Implementation of a Binary Search Tree (BST).
  *
  * @version 1.0
  * @author Cédric Alonso
@@ -16,20 +16,24 @@ import java.util.List;
  */
 public class BST {
 
-    public static final int NBMAXNODES = 2;
+    /**
+     * Maximum number of nodes for each level in the BST.
+     */
+    public static final int MAX_NODES_PER_LEVEL = 2;
+
     private Node root;
 
     /**
-     * Constructeur d'un Arbre de recherche binaire vide.
+     * Constructs an empty Binary Search Tree.
      */
     public BST() {
         this.root = new Node();
     }
 
     /**
-     * Insère une valeur dans l'Arbre de recherche binaire.
+     * Inserts a value into the Binary Search Tree.
      *
-     * @param value La valeur à insérer.
+     * @param value The value to insert.
      */
     public void insert(Integer value) {
         this.root = insert(value, this.root);
@@ -47,17 +51,17 @@ public class BST {
     }
 
     /**
-     * Effectue un parcours en ordre de l'Arbre de Recherche Binaire.
+     * Performs an in-order traversal of the Binary Search Tree.
      *
-     * @return Liste d'entiers représentant le parcours en ordre.
+     * @return List of integers representing the in-order traversal.
      */
-    public ArrayList<Integer> inOrder() {
-        ArrayList<Integer> inOrderTraversal = new ArrayList<>();
+    public List<Integer> inOrder() {
+        List<Integer> inOrderTraversal = new ArrayList<>();
         inOrder(root, inOrderTraversal);
         return inOrderTraversal;
     }
 
-    private void inOrder(Node node, ArrayList<Integer> traversal) {
+    private void inOrder(Node node, List<Integer> traversal) {
         if (node != null) {
             inOrder(node.getLeft(), traversal);
             traversal.add(node.getValue());
@@ -65,19 +69,18 @@ public class BST {
         }
     }
 
-
     /**
-     * Effectue un parcours pré-ordonné de l'Arbre de recherche binaire.
+     * Performs a pre-order traversal of the Binary Search Tree.
      *
-     * @return Liste d'entiers représentant le parcours pré-ordonné.
+     * @return List of integers representing the pre-order traversal.
      */
-    public ArrayList<Integer> preOrder() {
-        ArrayList<Integer> preOrderTraversal = new ArrayList<>();
+    public List<Integer> preOrder() {
+        List<Integer> preOrderTraversal = new ArrayList<>();
         preOrder(root, preOrderTraversal);
         return preOrderTraversal;
     }
 
-    private void preOrder(Node node, ArrayList<Integer> traversal) {
+    private void preOrder(Node node, List<Integer> traversal) {
         if (node != null) {
             traversal.add(node.getValue());
             preOrder(node.getLeft(), traversal);
@@ -86,17 +89,17 @@ public class BST {
     }
 
     /**
-     * Effectue un parcours post-ordonné de l'Arbre de recherche binaire.
+     * Performs a post-order traversal of the Binary Search Tree.
      *
-     * @return Liste d'entiers représentant le parcours post-ordonné.
+     * @return List of integers representing the post-order traversal.
      */
-    public ArrayList<Integer> postOrder() {
-        ArrayList<Integer> postOrderTraversal = new ArrayList<>();
+    public List<Integer> postOrder() {
+        List<Integer> postOrderTraversal = new ArrayList<>();
         postOrder(root, postOrderTraversal);
         return postOrderTraversal;
     }
 
-    private void postOrder(Node node, ArrayList<Integer> traversal) {
+    private void postOrder(Node node, List<Integer> traversal) {
         if (node != null) {
             postOrder(node.getLeft(), traversal);
             postOrder(node.getRight(), traversal);
@@ -105,9 +108,9 @@ public class BST {
     }
 
     /**
-     * Calcule la largeur de l'Arbre de recherche binaire.
+     * Calculates the width of the Binary Search Tree.
      *
-     * @return La largeur de l'Arbre de recherche binaire.
+     * @return The width of the Binary Search Tree.
      */
     public int breadth() {
         return breadth(root);
@@ -120,23 +123,23 @@ public class BST {
         int leftHeight = height(node.getLeft());
         int rightHeight = height(node.getRight());
 
-        return Math.max(leftHeight, rightHeight) * NBMAXNODES;
+        return Math.max(leftHeight, rightHeight) * MAX_NODES_PER_LEVEL;
     }
 
     /**
-     * Obtient la valeur maximale dans l'Arbre de recherche binaire.
+     * Gets the maximum value in the Binary Search Tree.
      *
-     * @return La valeur maximale dans l'Arbre de recherche binaire.
-     * @throws BSTException si l'Arbre de recherche binaire est vide.
+     * @return The maximum value in the Binary Search Tree.
+     * @throws BSTException if the Binary Search Tree is empty.
      */
     public Integer getMaxValue() throws BSTException {
         if (isEmpty())
             throw new BSTException("BST is empty");
 
-       return maxValue(this.root);
+        return maxValue(this.root);
     }
 
-    public Integer maxValue(Node node){
+    private Integer maxValue(Node node) {
         Integer maxValue = node.getValue();
         while (node.getRight() != null) {
             if (node.getRight().getValue() != null)
@@ -147,10 +150,10 @@ public class BST {
     }
 
     /**
-     * Obtient la valeur minimale dans l'Arbre de recherche binaire.
+     * Gets the minimum value in the Binary Search Tree.
      *
-     * @return La valeur minimale dans l'Arbre de recherche binaire.
-     * @throws BSTException si l'Arbre de recherche binaire est vide.
+     * @return The minimum value in the Binary Search Tree.
+     * @throws BSTException if the Binary Search Tree is empty.
      */
     public Integer getMinValue() throws BSTException {
         if (isEmpty())
@@ -170,9 +173,25 @@ public class BST {
     }
 
     /**
-     * Calcule la hauteur de l'Arbre de recherche binaire.
+     * Gets the mean value of the Binary Search Tree.
      *
-     * @return La hauteur de l'Arbre de recherche binaire.
+     * @return The mean value of the Binary Search Tree.
+     * @throws BSTException          if the Binary Search Tree is empty.
+     * @throws EmptyStackExceptions if there is an empty stack while calculating the mean value.
+     */
+    public Integer getMeanValue() throws BSTException, EmptyStackExceptions {
+        List<Integer> allValues = inOrder();
+        int sum = 0;
+        for (Integer value : allValues)
+            sum += value;
+
+        return sum / allValues.size();
+    }
+
+    /**
+     * Calculates the height of the Binary Search Tree.
+     *
+     * @return The height of the Binary Search Tree.
      */
     public int height() {
         return height(root);
@@ -189,9 +208,9 @@ public class BST {
     }
 
     /**
-     * Compte le nombre de nœuds non-nuls dans l'Arbre de recherche binaire.
+     * Counts the number of non-null nodes in the Binary Search Tree.
      *
-     * @return Le nombre de nœuds non-nuls dans l'Arbre de recherche binaire.
+     * @return The number of non-null nodes in the Binary Search Tree.
      */
     public int nbNodes() {
         return nbNodes(root);
@@ -207,16 +226,15 @@ public class BST {
         return leftNodes + rightNodes + 1;
     }
 
-
     /**
-     * Recherche un nœud avec la valeur spécifiée dans l'Arbre de recherche binaire.
+     * Searches for a node with the specified value in the Binary Search Tree.
      *
-     * @param value La valeur à rechercher.
-     * @throws BSTException si l'Arbre de recherche binaire est vide
-     * @return Vrai si la valeur à rechercher est présente dans l'Arbre de recherche binaire, faux sinon.
+     * @param value The value to search for.
+     * @throws BSTException if the Binary Search Tree is empty.
+     * @return True if the value to search for is present in the Binary Search Tree, false otherwise.
      */
-    public boolean search(Integer value) throws BSTException{
-        if (this.isEmpty()){
+    public boolean search(Integer value) throws BSTException {
+        if (this.isEmpty()) {
             throw new BSTException("BST is empty");
         }
         return search(value, root);
@@ -234,12 +252,11 @@ public class BST {
             return search(value, node.getRight());
     }
 
-
     /**
-     * Supprime un nœud avec la valeur spécifiée de l'Arbre de recherche binaire si elle existe.
+     * Removes a node with the specified value from the Binary Search Tree if it exists.
      *
-     * @param value La valeur à supprimer.
-     * @throws BSTException si la valeur à supprimer n'appartient pas à l'arbre.
+     * @param value The value to remove.
+     * @throws BSTException if the value to remove does not belong to the tree.
      */
     public void remove(Integer value) throws BSTException {
         if (!this.search(value))
@@ -270,15 +287,19 @@ public class BST {
         return node;
     }
 
-
+    /**
+     * Checks if the Binary Search Tree is empty.
+     *
+     * @return True if the Binary Search Tree is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return this.root == null || this.root.getValue() == null;
     }
 
     /**
-     * Retourne une représentation sous forme de chaîne de caractères de l'Arbre de recherche binaire.
+     * Returns a string representation of the Binary Search Tree.
      *
-     * @return La représentation sous forme de chaîne de caractères de l'Arbre de recherche binaire.
+     * @return The string representation of the Binary Search Tree.
      */
     @Override
     public String toString() {
@@ -286,14 +307,5 @@ public class BST {
             return "BST is empty";
 
         return "BST : " + inOrder();
-    }
-
-    public Integer getMeanValue() throws BSTException, EmptyStackExceptions {
-        List<Integer> allValues = inOrder();
-        int sum = 0;
-        for (Integer value : allValues)
-                sum += value;
-
-        return sum / allValues.size();
     }
 }

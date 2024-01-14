@@ -6,6 +6,16 @@ import TP2.utils.Test;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * The main class provides a menu-driven interface for users to perform various operations on a BST, including
+ * adding, searching, and removing nodes, as well as displaying statistics about the BST.
+ * The user interacts with the program through the console by choosing options from the menu.
+ * The program handles user input, performs the requested operations on the BST, and displays the results.
+ *
+ * @version 1.0
+ * @author Cédric Alonso
+ * @author Jade Hatoum
+ */
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,6 +25,12 @@ public class Main {
         menu(bst);
     }
 
+    /**
+     * The menu method handles the main interaction loop, allowing the user to choose various operations
+     * on the Binary Search Tree until the program is exited.
+     *
+     * @param bst The Binary Search Tree instance
+     */
     private static void menu(BST bst) {
         int choice = 0;
         do {
@@ -49,6 +65,9 @@ public class Main {
         } while (choice != 5);
     }
 
+    /**
+     * Displays the main menu with available options for the user.
+     */
     private static void displayMenu() {
         System.out.println(Test.titleBox("******** MENU ********"));
         System.out.println("1. Add new nodes to the Binary Search Tree");
@@ -58,6 +77,11 @@ public class Main {
         System.out.println("5. Exit the program");
     }
 
+    /**
+     * Handles the removal of nodes from the Binary Search Tree based on user input.
+     *
+     * @param bst The Binary Search Tree instance
+     */
     private static void removing(BST bst) {
         if (bst.isEmpty()) {
             System.err.println("BST is empty");
@@ -92,6 +116,11 @@ public class Main {
         } while (!"stop".equalsIgnoreCase(choice));
     }
 
+    /**
+     * Handles the searching of nodes in the Binary Search Tree based on user input.
+     *
+     * @param bst The Binary Search Tree instance
+     */
     private static void searching(BST bst) {
         if (bst.isEmpty()) {
             System.err.println("BST is empty");
@@ -120,6 +149,11 @@ public class Main {
         } while (!"stop".equalsIgnoreCase(choice));
     }
 
+    /**
+     * Handles the addition of nodes to the Binary Search Tree based on user input.
+     *
+     * @param bst The Binary Search Tree instance
+     */
     private static void adding(BST bst) {
         String choice;
         do {
@@ -139,6 +173,12 @@ public class Main {
         } while (!"stop".equalsIgnoreCase(choice));
     }
 
+    /**
+     * Displays various statistics of the Binary Search Tree, such as in-order, post-order, and pre-order traversals,
+     * as well as minimum, maximum, and mean values, height, breadth, and the number of nodes.
+     *
+     * @param bst The Binary Search Tree instance
+     */
     private static void displayStatistics(BST bst) {
         try {
             System.out.println("In order: " + bst.inOrder());
@@ -158,6 +198,9 @@ public class Main {
         }
     }
 
+    /**
+     * Exits the program, displaying a farewell message.
+     */
     private static void exit() {
         System.out.println("You exited the program ^w^");
         System.exit(0);
