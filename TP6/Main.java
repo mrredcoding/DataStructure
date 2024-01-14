@@ -187,13 +187,13 @@ public class Main {
             System.out.println("Post order: " + bst.postOrder());
             System.out.println("Pre order: " + bst.preOrder());
 
+            System.out.println("Breadth: " + bst.breadthFirstSearch());
+
             System.out.println("Minimal value: " + bst.getMinValue());
             System.out.println("Maximal value: " + bst.getMaxValue());
             System.out.println("Mean value: " + bst.getMeanValue());
 
             System.out.println("Height: " + bst.height());
-            System.out.println("Breadth: " + bst.breadth());
-
             System.out.println("Number of nodes: " + bst.nbNodes());
         } catch (BSTException | EmptyStackExceptions e) {
             System.out.println(e.getMessage());

@@ -1,6 +1,8 @@
 package TP6;
 
 import TP2.stack.EmptyStackExceptions;
+import TP5.queue.Queue;
+import TP5.queue.QueueException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,9 @@ import java.util.List;
 public class BST {
 
     /**
-     * Maximum number of nodes for each level in the BST.
+     * Maximum number of children for each node in the BST.
      */
-    public static final int MAX_NODES_PER_LEVEL = 2;
+    public static final int MAX_CHILDREN_PER_NODE = 2;
 
     private Node root;
 
@@ -106,22 +108,37 @@ public class BST {
     }
 
     /**
-     * Calculates the width of the Binary Search Tree.
+     * Performs a breadth-first search (BFS) traversal of the Binary Search Tree.
      *
-     * @return The width of the Binary Search Tree.
+     * @return List of integers representing the BFS traversal.
      */
-    public int breadth() {
-        return breadth(root);
+    public List<Integer> breadthFirstSearch() {
+        try {
+            List<Integer> BfsTraversal = new ArrayList<>();
+            breadthFirstSearch(root, BfsTraversal);
+            return BfsTraversal;
+        } catch (QueueException e) {
+            System.err.println("There was an issue with the queue");
+            return null;
+        }
     }
 
-    private int breadth(Node node) {
-        if (node == null)
-            return 0;
+    private void breadthFirstSearch(Node source, List<Integer> traversal) throws QueueException {
+        if (source == null)
+            return;
 
-        int leftHeight = height(node.getLeft());
-        int rightHeight = height(node.getRight());
+        Queue<Node> queue = new Queue<>(MAX_CHILDREN_PER_NODE * 2);
+        queue.push(source);
 
-        return Math.max(leftHeight, rightHeight) * MAX_NODES_PER_LEVEL;
+        while (!queue.isEmpty()) {
+            Node current = queue.pop();
+            traversal.add(current.getValue());
+
+            if (current.getLeft() != null)
+                queue.push(current.getLeft());
+            if (current.getRight() != null)
+                queue.push(current.getRight());
+        }
     }
 
     /**
