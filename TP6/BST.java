@@ -1,8 +1,6 @@
 package TP6;
 
-import TP2.dynamicStack.DynamicStack;
 import TP2.stack.EmptyStackExceptions;
-import TP2.stack.Stack;
 
 import java.util.ArrayList;
 import java.util.List;
