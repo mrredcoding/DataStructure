@@ -19,6 +19,8 @@ import java.util.Scanner;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String STOP = "stop";
+    public static final String CONTINUE = "continue";
 
     public static void main(String[] args) throws BSTException, EmptyStackExceptions {
         BST bst = new BST();
@@ -90,7 +92,7 @@ public class Main {
 
         String choice;
         do {
-            System.out.println("Enter a number to remove in the binary search tree: (type 'stop' to continue)");
+            System.out.println("Enter a number to remove in the binary search tree: (type '" + STOP +"' to continue)");
             choice = scanner.next();
             if (!"stop".equalsIgnoreCase(choice)) {
                 try {
@@ -105,7 +107,7 @@ public class Main {
                         System.out.println("The number '" + number + "' does not belong to the tree");
 
                 } catch (NumberFormatException e) {
-                    System.err.println("You need to type only numbers or 'stop'");
+                    System.err.println("You need to type only numbers or '" + STOP +"'");
                     choice = "continue";
                 } catch (BSTException e) {
                     System.out.println(e.getMessage());
@@ -128,7 +130,7 @@ public class Main {
         }
         String choice;
         do {
-            System.out.println("Enter a number to find in the binary search tree: (type 'stop' to continue)");
+            System.out.println("Enter a number to find in the binary search tree: (type '" + STOP +"' to continue)");
             choice = scanner.next();
             if (!"stop".equalsIgnoreCase(choice)) {
                 try {
@@ -138,7 +140,7 @@ public class Main {
                     System.out.println("The number '" + number + "' is " + (!found ? "not" : "") +
                             " in the binary search tree");
                 } catch (NumberFormatException e) {
-                    System.err.println("You need to type only numbers or 'stop'");
+                    System.err.println("You need to type only numbers or '" + STOP +"'");
                     choice = "continue";
                 } catch (BSTException e) {
                     System.out.println(e.getMessage());
@@ -157,7 +159,7 @@ public class Main {
     private static void adding(BST bst) {
         String choice;
         do {
-            System.out.println("Enter a number to add in the binary search tree: (type 'stop' when you are done)");
+            System.out.println("Enter a number to add in the binary search tree: (type '" + STOP +"' when you are done)");
             choice = scanner.next();
             if (!"stop".equalsIgnoreCase(choice)) {
                 try {
@@ -165,12 +167,12 @@ public class Main {
                     bst.insert(number);
                     System.out.println("The number '" + number + "' has been added to the binary search tree");
                 } catch (NumberFormatException e) {
-                    System.err.println("You need to type only numbers or 'stop'");
-                    choice = "continue";
+                    System.err.println("You need to type only numbers or '" + STOP +"'");
+                    choice = CONTINUE;
                 }
             }
 
-        } while (!"stop".equalsIgnoreCase(choice));
+        } while (!STOP.equalsIgnoreCase(choice));
     }
 
     /**
