@@ -94,7 +94,7 @@ public class Main {
         do {
             System.out.println("Enter a number to remove in the binary search tree: (type '" + STOP +"' to continue)");
             choice = scanner.next();
-            if (!"stop".equalsIgnoreCase(choice)) {
+            if (!STOP.equalsIgnoreCase(choice)) {
                 try {
                     int number = Integer.parseInt(choice);
                     boolean found = bst.search(number);
@@ -108,14 +108,14 @@ public class Main {
 
                 } catch (NumberFormatException e) {
                     System.err.println("You need to type only numbers or '" + STOP +"'");
-                    choice = "continue";
+                    choice = CONTINUE;
                 } catch (BSTException e) {
                     System.out.println(e.getMessage());
-                    choice = "stop";
+                    choice = STOP;
                 }
             }
 
-        } while (!"stop".equalsIgnoreCase(choice));
+        } while (!STOP.equalsIgnoreCase(choice));
     }
 
     /**
@@ -132,7 +132,7 @@ public class Main {
         do {
             System.out.println("Enter a number to find in the binary search tree: (type '" + STOP +"' to continue)");
             choice = scanner.next();
-            if (!"stop".equalsIgnoreCase(choice)) {
+            if (!STOP.equalsIgnoreCase(choice)) {
                 try {
                     int number = Integer.parseInt(choice);
                     boolean found = bst.search(number);
@@ -141,14 +141,14 @@ public class Main {
                             " in the binary search tree");
                 } catch (NumberFormatException e) {
                     System.err.println("You need to type only numbers or '" + STOP +"'");
-                    choice = "continue";
+                    choice = CONTINUE;
                 } catch (BSTException e) {
                     System.out.println(e.getMessage());
-                    choice = "stop";
+                    choice = STOP;
                 }
             }
 
-        } while (!"stop".equalsIgnoreCase(choice));
+        } while (!STOP.equalsIgnoreCase(choice));
     }
 
     /**
@@ -161,7 +161,7 @@ public class Main {
         do {
             System.out.println("Enter a number to add in the binary search tree: (type '" + STOP +"' when you are done)");
             choice = scanner.next();
-            if (!"stop".equalsIgnoreCase(choice)) {
+            if (!STOP.equalsIgnoreCase(choice)) {
                 try {
                     int number = Integer.parseInt(choice);
                     bst.insert(number);
